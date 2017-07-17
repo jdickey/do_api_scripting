@@ -1,0 +1,18 @@
+#!env zsh
+
+rm -rf Gemfile.lock .rbenv-gemsets
+mkdir -p tmp
+find tmp -name gemset -type d -depth 1 -delete
+mkdir tmp/gemset/
+if [[ -d $RBENV_ROOT ]]; then
+  rbenv gemset init './tmp/gemset'
+fi
+source bin/setup-and-test.sh setup
+rm -rf o-rdoc
+bin/rake
+
+if [[ -d $RBENV_ROOT ]]; then
+  rbenv rehash
+fi
+
+bundle binstub --force flay flog pry rake reek rubocop
