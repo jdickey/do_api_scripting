@@ -19,7 +19,7 @@ das_setup() {
   gem install flog -v 4.6.1
   gem install license_finder -v 3.0.0
   gem install minitest-matchers -v 1.4.1
-  gem install prolog_minitest_matchers -v 0.5.3
+  gem install prolog_minitest_matchers -v 0.5.4
   gem install minitest-reporters -v 1.1.14
   gem install minitest-tagz -v 1.5.2
   gem install pry -v 0.10.4
