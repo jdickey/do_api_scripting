@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'do_api_scripting/version'
+require 'do_api_scripting/cli'
 
 # Code to support scripting the DigitalOcean API, e.g., for use with Ansible.
 module DoApiScripting
