@@ -30,18 +30,20 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_development_dependency "bundler", "1.15.1"
-  spec.add_development_dependency "rake", "~> 12.0.0"
-  spec.add_development_dependency "minitest", "5.10.2"
-
+  spec.add_dependency "dry-struct", '0.3.1'
   spec.add_dependency "excon", "0.57.1"
   spec.add_dependency "semantic_logger", '4.1.1'
+  spec.add_dependency 'thor', '0.19.4'
+
+  spec.add_development_dependency "bundler", "1.15.1"
+  spec.add_development_dependency "rake", "12.0.0"
+  spec.add_development_dependency "minitest", "5.10.2"
 
   spec.add_development_dependency "minitest-matchers", '1.4.1'
   spec.add_development_dependency "minitest-reporters", '1.1.14'
   spec.add_development_dependency "minitest-tagz", '1.5.2'
 
-  spec.add_development_dependency "prolog_minitest_matchers", '0.5.3'
+  spec.add_development_dependency "prolog_minitest_matchers", '0.5.4'
 
   spec.add_development_dependency "awesome_print", '1.8.0'
   spec.add_development_dependency "benchmark-ips", '2.7.2'

@@ -39,7 +39,7 @@ end
 #   CodeClimate.TestReporter.start
 # end
 
-require 'minitest/autorun' # harmless if already required
+require 'minitest/autorun'
 require 'minitest/reporters'
 require 'prolog_minitest_matchers'
 require 'minitest/tagz'

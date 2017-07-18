@@ -1,5 +1,17 @@
 <h1>Usage of the 'do_api' Command</h1>
 
+- [Overview](#overview)
+- [Commands](#commands)
+  - [Help](#help)
+  - [All Droplets](#all-droplets)
+  - [All Floating IPs](#all-floating-ips)
+  - [Assign Floating IP](#assign-floating-ip)
+  - [Droplet Info](#droplet-info)
+  - [Power Off](#power-off)
+  - [Power On](#power-on)
+  - [Rename](#rename)
+  - [Shutdown](#shutdown)
+  - [Version](#version)
 # Overview
 
 The `do_api` utility has several queries and commands, which follow a fairly uniform pattern.

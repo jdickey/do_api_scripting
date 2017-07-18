@@ -1,24 +1,13 @@
 <h1>DoApiScripting</h1>
 
-- [DoApiScripting](#doapiscripting)
-  * [Installation](#installation)
-  * [Usage](#usage)
-  	  * [Help](#help)
-  	  * [All Droplets](#all-droplets)
-  	  * [All Floating IPs](#all-floating-ips)
-  	  * [Assign Floating IP](#assign-floating-ip)
-  	  * [Droplet Info](#droplet-info)
-  	  * [Power Off](#power-off)
-  	  * [Power On](#power-on)
-  	  * [Rename](#rename)
-  	  * [Shutdown](#shutdown)
-  	  * [Version](#version)
-  * [Development](#development)
-  * [Contributing](#contributing)
-    * [Contributing](#contributing)
-      * [Process](#process)
-      * [Notes on Contributing](#notes-on-contributing)
-  * [License](#license)
+- [Overview](#overview)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Development](#development)
+- [Contributing](#contributing)
+  - [Process](#process)
+  - [Notes on Contributing](#notes-on-contributing)
+- [License](#license)
 
 ## Overview
 
