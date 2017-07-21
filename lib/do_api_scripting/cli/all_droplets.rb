@@ -17,15 +17,16 @@ module DoApiScripting
     private
 
     DUMMY_DATA_ROWS = [
-      ['ID', 56789012, 56789023],
-      ['Name', 'amazon', 'nile'],
-      ['Status', 'active', 'active'],
+      %w[ID 56789012 56789023],
+      %w[Name amazon nile],
+      %w[Status active active],
       ['Created At', '2017-06-21T08:20:42Z', '2017-06-22T10:07:34Z'],
-      ['Size', '512mb', '512mb'],
+      %w[Size 512mb 512mb],
       ['Public IP', '128.255.210.199', '128.199.173.42'],
       ['Region Name', 'Singapore 4', 'Singapore 4']
     ].freeze
 
+    # Reek calls this out as a :reek:UtilityFunction. Yes, it is.
     def all_droplets_table
       Terminal::Table.new(rows: DUMMY_DATA_ROWS).to_s
     end

@@ -20,10 +20,53 @@ module DoApiScripting
         expect(out_streams.err).must_be :empty?
       end
 
-      it 'produces a DUMMIED message containing $DO_API_TOKEN' do
-        expr = /Would summarise all Droplets owned by PAT ([0-9A-Fa-f]{64})\n/
-        actual = out_streams.out.match(expr)
-        expect(actual[1]).must_equal ENV['DO_API_TOKEN']
+      # Support class to match a (single- or multiple-)droplet table.
+      # This probably should be a custom matcher.
+      class MatchInfoTable
+        def self.call(dump_str:)
+          new(dump_str).call
+        end
+
+        def call
+          horizontal_borders? && lines_start_with_border? && lines_have_headers?
+        end
+
+        protected
+
+        def initialize(dump_str)
+          @lines = dump_str.lines.map(&:rstrip)
+          @parts = @lines[1..-2].map { |line| line.split('|').map(&:strip) }
+          self
+        end
+
+        private
+
+        attr_reader :lines, :parts
+
+        HEADERS = ['ID', 'Name', 'Status', 'Created At', 'Size', 'Public IP',
+                   'Region Name'].freeze
+        private_constant :HEADERS
+
+        def horizontal_borders?
+          ret = lines.first == lines.last
+          chars = Set.new(lines.first.split('+').join.chars)
+          ret && (chars.to_a == ['-'])
+        end
+
+        def lines_have_headers?
+          actual = parts.map { |part| part[1] }
+          actual == HEADERS
+        end
+
+        def lines_start_with_border?
+          segments = Set.new parts.map(&:first)
+          segments.to_a == ['']
+        end
+      end # class MatchInfoTable
+
+      tag :focus
+      it 'produces a table-formatted message describing the droplet' do
+        expect(MatchInfoTable.call(dump_str: out_streams.out)).must_equal true
       end
     end # describe 'with a value defined for ENV["DO_API_TOKEN"]'
 

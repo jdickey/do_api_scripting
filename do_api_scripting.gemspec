@@ -32,11 +32,12 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "dry-struct", '0.3.1'
   spec.add_dependency "excon", "0.57.1"
+  spec.add_dependency "prolog-dry_types", '0.3.4'
   spec.add_dependency "semantic_logger", '4.1.1'
   spec.add_dependency "terminal-table", '1.8.0'
   spec.add_dependency 'thor', '0.19.4'
 
-  spec.add_development_dependency "bundler", "1.15.1"
+  spec.add_development_dependency "bundler", "1.15.2"
   spec.add_development_dependency "rake", "12.0.0"
   spec.add_development_dependency "minitest", "5.10.2"
 
