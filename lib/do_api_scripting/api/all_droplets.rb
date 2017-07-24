@@ -3,6 +3,8 @@
 require 'excon'
 require 'prolog/dry_types'
 
+require_relative './droplet_list'
+
 # Code to support scripting the DigitalOcean API, e.g., for use with Ansible.
 module DoApiScripting
   module API
@@ -21,23 +23,6 @@ module DoApiScripting
       def initialize(api_token)
         @api_token = api_token
       end
-
-      # Attributes of a DO Droplet to be reported on via our API.
-      class DropletInfo < Dry::Struct::Value
-        attribute :id, Types::Coercible::Int
-        attribute :name, Types::Strict::String
-        attribute :created_at, Types::Json::Time
-        attribute :public_ip, Types::Strict::String # custom type?
-        attribute :region_name, Types::Strict::String
-        attribute :size_slug, Types::Strict::String
-        attribute :status, Types::Strict::String
-      end
-
-      # Container class returning information about Droplets from API.
-      class DropletList < Dry::Struct::Value
-        attribute :droplets, Types::Strict::Array.member(DropletInfo)
-      end # class DropletList
-      private_constant :DropletList
 
       DUMMY_DATA = {
         meta: { total: 3 },
