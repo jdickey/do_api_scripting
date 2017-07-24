@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 require 'excon'
+require 'json'
 
 require_relative './non_stubs'
-require_relative './stubs'
 
 # Code to support scripting the DigitalOcean API, e.g., for use with Ansible.
 module DoApiScripting
@@ -12,12 +12,14 @@ module DoApiScripting
     class AllDroplets
       # Class encapsulating sending request to/receiving response from DO API.
       class DataRequest
-        def self.get(auth_header: :from_env, request_module: Stubs)
+        def self.get(auth_header: :from_env, request_module: NonStubs)
           new(auth_header, request_module).get
         end
 
         def get
-          stubs.request(headers: headers, url: URL)
+          resp = stubs.request(headers: headers, url: URL)
+          body = JSON.parse(resp.body, symbolize_names: true)
+          Struct.new(:status, :body).new resp.status, body
         end
 
         protected

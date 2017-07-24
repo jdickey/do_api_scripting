@@ -3,6 +3,7 @@
 require 'test_helper'
 
 require 'do_api_scripting/api/all_droplets/data_request'
+require 'do_api_scripting/api/all_droplets/stubs'
 
 # Code to support scripting the DigitalOcean API, e.g., for use with Ansible.
 module DoApiScripting
@@ -14,7 +15,9 @@ module DoApiScripting
 
         describe 'has a .get method returning an object that' do
           describe 'responds to' do
-            let(:obj) { described_class.get }
+            let(:obj) do
+              described_class.get(request_module: DataRequest::Stubs)
+            end
 
             it ':status, returning a value of 200' do
               expect(obj.status).must_equal 200
