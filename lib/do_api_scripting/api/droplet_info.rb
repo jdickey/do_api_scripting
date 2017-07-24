@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'prolog/dry_types'
+
 # Code to support scripting the DigitalOcean API, e.g., for use with Ansible.
 module DoApiScripting
   module API
