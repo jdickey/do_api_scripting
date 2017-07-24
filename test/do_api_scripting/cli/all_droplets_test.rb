@@ -64,7 +64,6 @@ module DoApiScripting
         end
       end # class MatchInfoTable
 
-      tag :focus
       it 'produces a table-formatted message describing the droplet' do
         expect(MatchInfoTable.call(dump_str: out_streams.out)).must_equal true
       end
