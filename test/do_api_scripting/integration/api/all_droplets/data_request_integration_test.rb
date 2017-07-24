@@ -12,8 +12,7 @@ module DoApiScripting
     describe 'AllDroplets with live requests' do
       let(:req_module) { AllDroplets::DataRequest::NonStubs }
       let(:resp) { AllDroplets::DataRequest.get(request_module: req_module) }
-      let(:body) { JSON.parse(resp.body, symbolize_names: true) }
-      let(:droplet_data) { body[:droplets] }
+      let(:droplet_data) { resp.body[:droplets] }
       let(:droplets) do
         droplet_data.map do |datum|
           DropletInfo.new id: datum[:id], name: datum[:name],
