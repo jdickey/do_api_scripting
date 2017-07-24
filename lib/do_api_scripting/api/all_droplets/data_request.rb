@@ -11,6 +11,10 @@ module DoApiScripting
       class DataRequest
         # Stubbing data shouldn't be part of the core logic, should it? :P
         module Stubs
+          def self.request_params(headers)
+            { mock: true, headers: headers }
+          end
+
           def self.on
             Excon.stub({}, status: 200, body: JSON.dump(DUMMY_DATA))
           end
@@ -58,18 +62,39 @@ module DoApiScripting
           private_constant :DUMMY_DATA
         end
 
-        def self.get
-          new.get
+        def self.get(auth_header = :from_env)
+          new(auth_header).get
         end
 
         # Reek points out that this is (temporarily) a :reek:UtilityFunction.
         def get
           Stubs.on
+          url = 'https://api.digitalocean.com/v2/droplets'
+          resp = Excon.get(url, stubs.request_params(headers))
           Stubs.off
-          Struct.new(:body, :status).new({}, 200)
+          resp
         end
 
-        # private
+        protected
+
+        def initialize(auth_header)
+          @auth_header = auth_header
+          if auth_header == :default
+            @auth_header = "Bearer #{ENV['DO_API_TOKEN']}"
+          end
+          self
+        end
+
+        private
+
+        attr_reader :auth_header
+
+        def headers
+          {
+            'Content-Type': 'application/json',
+            'Authorization': auth_header
+          }
+        end
       end # class DoApiScripting::API::AllDroplets::DataRequest
     end # class DoApiScripting::API::AllDroplets
   end
