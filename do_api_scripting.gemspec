@@ -30,6 +30,7 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
+  spec.add_dependency "chamber", '2.10.1'
   spec.add_dependency "dry-struct", '0.3.1'
   spec.add_dependency "excon", "0.57.1"
   spec.add_dependency "prolog-dry_types", '0.3.4'
