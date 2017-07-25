@@ -83,10 +83,12 @@ module DoApiScripting
 
       # Reek sees this as a :reek:UtilityFunction. We'll get around to it.
       def droplet_from_datum(datum)
-        datum2 = datum.reject { |k, _| %i[networks region].include?(k) }
-        datum2[:public_ip] = datum.dig(:networks, :v4, 1, :ip_address)
-        datum2[:region_name] = datum.dig(:region, :name)
-        DropletInfo.new datum2
+        intermediate = datum.reject do |attrib, _|
+          %i[networks region].include?(attrib)
+        end
+        intermediate[:public_ip] = datum.dig(:networks, :v4, 1, :ip_address)
+        intermediate[:region_name] = datum.dig(:region, :name)
+        DropletInfo.new intermediate
       end
 
       def return_obj
