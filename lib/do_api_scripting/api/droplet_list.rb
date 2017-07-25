@@ -10,6 +10,7 @@ module DoApiScripting
     # Container class returning information about Droplets from API.
     class DropletList < Dry::Struct::Value
       attribute :droplets, Types::Strict::Array.member(DropletInfo)
+      attribute :status, Types::Strict::Int
     end # class DoApiScripting::API::DropletList
   end
 end

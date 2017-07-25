@@ -11,15 +11,19 @@ module DoApiScripting
       let(:described_class) { API::AllDroplets }
 
       describe 'has a .call method' do
-        describe 'that, supplied a valid API token, returns an object that' do
+        describe 'that returns an object whose' do
           let(:call_result) { described_class.call params }
           let(:params) { { request_module: request_module } }
           let(:request_module) { API::AllDroplets::DataRequest::Stubs }
 
-          it 'returns an object whose :droplets is an Array' do
+          it ':droplets reader returns an Array' do
             expect(call_result.droplets.to_ary.length).must_be :>=, 0
           end
-        end # describe 'that, supplied a valid API token, returns an object...'
+
+          it ':status reader returns a positive integer' do
+            expect(call_result.status.to_int).must_be :>, 0
+          end
+        end # describe 'that returns an object whose'
       end # describe 'has a .call method'
     end # describe 'API::AllDroplets'
   end

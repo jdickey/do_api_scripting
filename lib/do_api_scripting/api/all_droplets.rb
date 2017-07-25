@@ -74,8 +74,11 @@ module DoApiScripting
 
       # Reek says this is a :reek:UtilityFunction.
       def droplet_data
-        resp = DataRequest.get(request_module: request_module)
-        resp.body
+        data = DataRequest.get(request_module: request_module)
+        droplets = data.body[:droplets].map do |datum|
+          droplet_from_datum(datum)
+        end
+        { droplets: droplets, status: data.status }
       end
 
       # Reek sees this as a :reek:UtilityFunction. We'll get around to it.
@@ -87,10 +90,7 @@ module DoApiScripting
       end
 
       def return_obj
-        droplets = droplet_data[:droplets].map do |datum|
-          droplet_from_datum(datum)
-        end
-        DropletList.new droplets: droplets
+        DropletList.new droplet_data.to_h
       end
     end # class DoApiScripting::API::AllDroplets
   end
