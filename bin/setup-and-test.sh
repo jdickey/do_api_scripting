@@ -6,6 +6,8 @@ das_setup() {
 
   gem install excon -v 0.57.1
   gem install awesome_print -v 1.8.0
+  gem install chamber -v 2.10.1
+  gem install prolog-dry_types -v 0.3.4
   gem install semantic_logger -v 4.1.1
   gem install terminal-table -v 1.8.0
   gem install thor -v 0.19.4
