@@ -42,6 +42,7 @@ module DoApiScripting
         attr_reader :auth_header, :stubs
 
         DEFAULT_AUTH_HEADER = "Bearer #{Chamber.env.do.api_token}"
+        private_constant :DEFAULT_AUTH_HEADER
 
         URL = 'https://api.digitalocean.com/v2/droplets'
         private_constant :URL
