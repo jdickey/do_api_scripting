@@ -16,10 +16,7 @@ module DoApiScripting
           let(:params) { { request_module: request_module } }
           let(:request_module) { API::AllDroplets::DataRequest::Stubs }
 
-          require 'pry-byebug'
-
           it 'returns an object whose :droplets is an Array' do
-            binding.pry
             expect(call_result.droplets.to_ary.length).must_be :>=, 0
           end
         end # describe 'that, supplied a valid API token, returns an object...'
